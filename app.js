@@ -1,24 +1,24 @@
-const poke_container = document.getElementById("poke_container");
-const pokemons_number = 150;
+const pokemonContainer = document.getElementById("pokemon-container");
+const pokemonsNumber = 150;
 
 const fetchPokemons = async () => {
-  for (let i = 1; i < pokemons_number; i++) {
+  for (let i = 1; i < pokemonsNumber; i++) {
     await getPokemon(i);
   }
 };
 
 const getPokemon = async (id) => {
-  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-  const res = await fetch(url);
-  const pokemon = await res.json();
+  const apiUrl = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const resolve = await fetch(apiUrl);
+  const pokemon = await resolve.json();
   createPokemonCard(pokemon);
 };
 
 fetchPokemons();
 
 const createPokemonCard = (pokemon) => {
-  const pokemonEl = document.createElement("div");
-  pokemonEl.classList.add("pokemon");
+  const pokemonElement = document.createElement("div");
+  pokemonElement.classList.add("pokemon");
 
   const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
 
@@ -37,6 +37,6 @@ const createPokemonCard = (pokemon) => {
        </div>
     `;
 
-  pokemonEl.innerHTML = pokeInnerHTML;
-  poke_container.appendChild(pokemonEl);
+  pokemonElement.innerHTML = pokeInnerHTML;
+  pokemonContainer.appendChild(pokemonElement);
 };
